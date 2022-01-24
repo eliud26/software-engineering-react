@@ -16,12 +16,12 @@ function Index() {
     {label: 'More', icon: 'fa-circle-ellipsis', href: 'more.html', path: '/more'},
   ]
   return(
-    <div class="ttr-navigation">
-     <ul class="list-group">
+    <div className="ttr-navigation">
+     <ul className="list-group">
       {
       links.map(link => {
         return(
-        <li class={`list-group-item border-0 ttr-font-size-150pc text-nowrap ${location.pathname.indexOf(link.path) >= 0 ? 'fw-bold':''}`}>
+        <li key={link.label} className={`list-group-item border-0 ttr-font-size-150pc text-nowrap ${location.pathname.indexOf(link.path) >= 0 ? 'fw-bold':''}`}>
           <Link to={link.path}
              className="text-decoration-none text-black">
             <i className={`fa ${link.icon} text-center`}></i>
@@ -32,7 +32,7 @@ function Index() {
       })
       }
       </ul>
-     <a href="#" class="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
+     <a href="#" className="mt-3 btn btn-lg btn-primary rounded-pill w-100 fw-bold text-white">
       Tuit</a>
     </div>
   );
