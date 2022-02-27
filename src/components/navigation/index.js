@@ -14,6 +14,7 @@ function Index() {
     {label: 'Lists', icon: 'fa-list', href: 'lists.html', path: '/lists'},
     {label: 'Profile', icon: 'fa-user', href: 'profile.html', path: '/profile'},
     {label: 'More', icon: 'fa-circle-ellipsis', href: 'more.html', path: '/more'},
+      {label: 'Login', icon: 'fa-user', path: '/login'},
   ]
   return(
     <div className="ttr-navigation">
@@ -24,7 +25,7 @@ function Index() {
         <li key={link.label} className={`list-group-item border-0 ttr-font-size-150pc text-nowrap ${location.pathname.indexOf(link.path) >= 0 ? 'fw-bold':''}`}>
           <Link to={link.path}
              className="text-decoration-none text-black">
-            <i className={`fa ${link.icon} text-center`}></i>
+            <i className={`fa ${link.icon} text-center`}/>
             <span className="ttr-label">{link.label}</span>
           </Link>
         </li>

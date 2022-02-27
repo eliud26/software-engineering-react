@@ -18,7 +18,7 @@ function WhatsHappening() {
            <div className="flex-grow-1">
             <h3 className="fs-6 fw-lighter">
              {wh.topic} - {wh['hours-ago']} hours ago</h3>
-            <div class="fw-bold mb-2 pe-1">
+            <div className="fw-bold mb-2 pe-1">
              {wh.content}
             </div>
             <h4 className="fs-6 fw-lighter">{wh.likes} likes</h4>
