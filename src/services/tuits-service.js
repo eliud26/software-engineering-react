@@ -1,9 +1,9 @@
 import axios from "axios";
 
-//const TUITS_API = "https://cs5500-01-sp22.herokuapp.com/api/tuits";
-const TUITS_API = "http://localhost:4000/tuits";
-//const USERS_API = "https://cs5500-01-sp22.herokuapp.com/api/users";
-const USERS_API = "http://localhost:4000/users";
+const TUITS_API = "https://software-node-spring22.herokuapp.com/tuits";
+//const TUITS_API = "http://localhost:4000/tuits";
+const USERS_API = "https://software-node-spring22.herokuapp.com/users";
+//const USERS_API = "http://localhost:4000/users";
 
 export const findAllTuits = () =>
     axios.get(TUITS_API)
