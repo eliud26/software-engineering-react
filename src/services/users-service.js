@@ -9,9 +9,10 @@ export const createUser = (user) =>
     axios.post(`${USERS_API}`, user)
         .then(response => response.data);
 
-export const findAllUsers = () =>
-    axios.get(USERS_API)
+export const findAllUsers = () => {
+    return axios.get(USERS_API)
         .then(response => response.data);
+}
 
 export const findUserById = (uid) =>
     axios.get(`${USERS_API}/${uid}`)
@@ -27,7 +28,10 @@ export const deleteUsersByUsername = (username) =>
 
 export const findUserByCredentials = (credentials) =>
     axios.post(`${LOGIN_API}`, credentials)
-        .then(response => response.data);
+        .then(response => response.data)
+        .catch(e => console.log(e));
+
+
 
 const service = {
     findAllUsers

@@ -8,10 +8,10 @@ import services from "./services";
 import {Login} from "../components/profile/login";
 import {act, fireEvent, render, screen, waitFor} from "@testing-library/react";
 import {HashRouter} from "react-router-dom";
-import Tuiter from "../components/tuiter";
+import Tuiter from "../components/tuiter/tuiter";
 import React from "react";
 
-jest.mock("axios");
+//jest.mock("axios");
 
 const MOCKED_USERS = [
     {username: 'ellen_ripley', password: 'lv426', email: 'repley@weyland.com'},
@@ -19,7 +19,8 @@ const MOCKED_USERS = [
 ]
 
 test("mocked hello world axios works", async () => {
-    axios.get.mockImplementation(() =>
+    const mock = jest.spyOn(axios, "get");
+    mock.mockImplementation(() =>
         Promise.resolve({ data: {message: 'hello world'} }));
     const response = await axios.get();
     expect(response.data.message).toEqual('hello world')
@@ -27,7 +28,8 @@ test("mocked hello world axios works", async () => {
 
 describe('sss', () => {
     test("mocked hello world axios works", async () => {
-        axios.get.mockImplementation(() =>
+        const mock = jest.spyOn(axios, "get");
+        mock.mockImplementation(() =>
             Promise.resolve({ data: {message: 'hello world'} }));
         const response = await axios.get();
         expect(response.data.message).toEqual('hello world')
@@ -35,7 +37,8 @@ describe('sss', () => {
 })
 
 test("find all users mock works", async () => {
-    axios.get.mockImplementation(() =>
+    const mock = jest.spyOn(axios, "get");
+    mock.mockImplementation(() =>
         Promise.resolve({ data: {users: MOCKED_USERS} }));
     const response = await services.findAllUsers();
     const users = response.users;
@@ -47,7 +50,8 @@ test("find all users mock works", async () => {
 
 describe('fff', () => {
     test("find all users mock works", async () => {
-        axios.get.mockImplementation(() =>
+        const mock = jest.spyOn(axios, "get");
+        mock.mockImplementation(() =>
             Promise.resolve({ data: {users: MOCKED_USERS} }));
         const response = await services.findAllUsers();
         const users = response.users;
@@ -59,19 +63,21 @@ describe('fff', () => {
 })
 
 describe('www', () => {
-    beforeEach(() => {
-        axios.get.mockImplementation(() =>
-            Promise.resolve({ data: {users: MOCKED_USERS} }));
 
+    beforeEach(() => {
+        const mock = jest.spyOn(axios, "get");
+        mock.mockImplementation(() =>
+            Promise.resolve({ data: {users: MOCKED_USERS} }));
         act(() => {
-            render(<Tuiter/>)
+             render(<Tuiter/>)
         });
     });
 
 
     test("login renders users", async () => {
         // console.log(qwe);
-        axios.get.mockImplementation(() =>
+        const mock = jest.spyOn(axios, "get");
+        mock.mockImplementation(() =>
             Promise.resolve({ data: {users: MOCKED_USERS} }));
 
         await act(async () => {
@@ -144,7 +150,7 @@ describe('createUser', () => {
 
     // axios.get.mockResolvedValue(resp);
     // axios.get.mockImplementation(() => Promise.resolve(resp))
-
+    //const mocked = jest.spyOn(axios, "get");
     jest.mock('axios', () => ({
         get: jest.fn((url) => {
             return new Promise((resolve) => {
@@ -162,13 +168,13 @@ describe('createUser', () => {
 
     test('user service can insert new users in database', async () => {
 
-        act(() => {
+        //act(() => {
             render(
                 <HashRouter>
                     <Login/>
                 </HashRouter>
             );
-        });
+        //});
 
         const user = screen.getByText(/ellenripley/i);
         expect(user).toBeInTheDocument();

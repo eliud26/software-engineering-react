@@ -43,42 +43,31 @@ describe('createTuit', () => {
 
 describe('deleteTuit', () => {
     // TODO: implement this
-    const tuit1 = {
-        _id: "621a85e8458d01d705e63474",
-        postedBy : "621a4d335f17f1617390f0d4",
-        tuit: "I love tropical places",
-        postedOn: "2022-02-26T14:27:27.842+00:00"
+    const user = {
+        username: "Iron-Man",
+        password: "iron123",
+        email: "iron@man.com"
     }
-    // const user = {
-    //     username: "Iron-Man",
-    //     password: "iron123",
-    //     email: "iron@man.com"
-    // }
-    // const tuit = {
-    //     tuit: "I am billionaire"
-    // }
+    const tuit = {
+        tuit: "I am billionaire"
+    }
 
-    // beforeAll(async ()=>{
-    //     return createUser(user);
-    //     //const creatU = await createUser(user);
-    //     // const findU = await findUserByCredentials(user.username, user.password);
-    //     // const createT = await createTuit(findU._id, tuit);
-    //     // const findT = await findTuitById(createT._id);
-    //     // return [
-    //     //     creatU,
-    //     //     findU,
-    //     //     createT,
-    //     //     findT
-    //     // ]
-    // });
+    beforeAll( ()=>{
+        //return createUser(user);
+        return deleteUsersByUsername(user.username);
+
+    });
 
     afterAll(()=> {
-        return deleteTuit(tuit1._id);
+        return deleteUsersByUsername(user.username);
     });
 
     test('can delete tuit wtih REST API', async ()=>{
-        const status = await deleteTuit(tuit1._id);
-        expect(status.deletedCount).toBeGreaterThanOrEqual(1)
+        const createU =  await createUser(user);
+        const createT = await createTuit(createU._id, tuit);
+        const findT = await findTuitById(createT._id);
+        const status = await deleteTuit(findT._id);
+        expect(status.deletedCount).toBeGreaterThanOrEqual(1);
     })
 });
 
@@ -115,9 +104,9 @@ describe('findTuitById', () => {
 
 describe('findAllTuits', () => {
     // TODO: implement this
-    const tuits = [
+    const tuitsToBeInserted = [
         {
-          tuit: "Elon Musk is a genius"
+          tuit: "Elon Musk is crazy"
         },
         {
             tuit: "I will never climb mount Everest"
@@ -130,7 +119,7 @@ describe('findAllTuits', () => {
     // setup data before test
     beforeAll(async () => {
             // insert several known users
-            tuits.map(tuit =>
+            tuitsToBeInserted.map(tuit =>
                 createTuit("6217bfd11a5003f5c3db644d", tuit)
             )
         //return deleteAll;
@@ -138,20 +127,23 @@ describe('findAllTuits', () => {
     );
 
     // clean up after ourselves
-    afterAll(() =>
-        // delete the users we inserted
-        // tuits.map(username =>
-        //     deleteUsersByUsername(username)
-        // )
-        {
-            //Ask about using this in the before
-            // to empty the database before running
-            // the test
-            return deleteAllTuits();
-        }
+    afterAll(async () =>
+        //delete the users we inserted
+        tuitsToBeInserted.map(username =>
+             deleteByUsernameAndTuit(username)
+        )
+
     );
     test("can retrieve all tuits with REST API",async ()=>{
         const findTuits = await findAllTuits();
-        expect(findTuits.length).toBeGreaterThanOrEqual(tuits.length)
+        expect(findTuits.length).toBeGreaterThanOrEqual(tuitsToBeInserted.length)
+
+        const tuitsWeInserted = findTuits.filter(
+            tuit => tuitsToBeInserted.indexOf(tuit.tuit) >= 0);
+
+        tuitsWeInserted.forEach(tuits => {
+            const tuit = tuitsToBeInserted.find(tuit => tuit === tuits.tuit);
+            expect(tuits.tuit).toEqual(tuit);
+        })
     })
 });
