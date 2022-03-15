@@ -74,7 +74,7 @@ describe('deleteTuit', () => {
 describe('findTuitById', () => {
     // TODO: implement this
     const tuit = {
-        tuit: "Spicy food is great",
+        tuit: "Spicy food is great"
     }
     const user = {
         username: "Jack",
