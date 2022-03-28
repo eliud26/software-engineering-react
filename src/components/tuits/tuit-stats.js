@@ -1,6 +1,15 @@
-import React from "react";
+import React, {useEffect, useState} from "react";
+import * as serviceL from "../../services/likes-service";
+import * as serviceU from "../../services/auth-service";
+
 
 const TuitStats = ({tuit, likeTuit, unlikeTuit}) => {
+    const [user, setUser] = useState({});
+
+    useEffect( async ()=> {
+        const findUser = await serviceU.profile();
+        setUser(findUser);
+    }, [])
     return (
         <div className="row mt-2">
             <div className="col">
@@ -12,19 +21,21 @@ const TuitStats = ({tuit, likeTuit, unlikeTuit}) => {
                 {tuit.stats && tuit.stats.retuits}
             </div>
             <div className="col">
-            <span onClick={() => likeTuit(tuit)}>
-              {
-                  tuit.stats.likes > 0 &&
-                  <i className="fas fa-heart me-1" style={{color: 'red'}}/>
-              }
-              {
-                  tuit.stats.likes <= 0 &&
-                  <i className="far fa-heart me-1"/>
-              }
-              {tuit.stats && tuit.stats.likes}
-            </span>
+                <span onClick={() => likeTuit(tuit)}>
+                  {
+                      tuit.stats.likeByFlag ? <i className="fa-regular fa-thumbs-up" style={{color: 'red'}}/> :
+                          <i className="fa-regular fa-thumbs-up"/>
+                  }
+                  {tuit.stats && tuit.stats.likes}
+                </span>
+            </div>
+            <div className="col">
                 <span onClick={()=> unlikeTuit(tuit)}>
-                    <i className="fa-solid fa-thumbs-down"/>
+                    {
+                        tuit.stats.dislikeByFlag ? <i className="fa-regular fa-thumbs-down" style={{color: 'red'}}/> :
+                            <i className="fa-regular fa-thumbs-down"/>
+                    }
+                    {tuit.stats && tuit.stats.dislikes}
                 </span>
             </div>
             <div className="col">

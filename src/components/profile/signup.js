@@ -12,18 +12,17 @@ const Signup = () => {
             .catch(e => alert(e));
     return (
         <div>
-            <h1>Signup</h1>
             <input onChange={(e) =>
                 setNewUser({...newUser,
-                    username: e.target.value})}/>
+                    username: e.target.value})} className="form-control mb-2" placeholder={"Username"}/>
             <input onChange={(e) =>
                 setNewUser({...newUser,
-                    password: e.target.value})}/>
+                    password: e.target.value})} className="form-control mb-2"
+                   type={"password"} placeholder={"Password"}/>
             <input onChange={(e) =>
                 setNewUser({...newUser,
-                    email: e.target.value})}/>
-            <button onClick={signup}>
-                Signup</button>
+                    email: e.target.value})} className="form-control mb-2" placeholder={"Email"}/>
+            <button onClick={signup} className="btn btn-primary mb-5">Register</button>
         </div>
     );
 }

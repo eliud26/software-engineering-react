@@ -44,7 +44,7 @@ const EditProfile = () => {
               <label htmlFor="bio">Bio</label>
               <textarea
                 className="p-0 form-control border-0"
-                id="bio"></textarea>
+                id="bio"/>
             </div>
             <div className="border border-secondary rounded-3 p-2 mb-3">
               <label htmlFor="date-of-birth">Date of birth</label>

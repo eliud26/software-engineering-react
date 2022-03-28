@@ -23,7 +23,6 @@ function Tuiter () {
           </div>
           <div className="ttr-center-column">
             <Routes>
-              <Route path="/" element={<Home/>}/>
               <Route path="/login" element={<Login/>}/>
               <Route path="/tuiter" element={<Home/>}/>
               <Route path="/home" element={<Home/>}/>
@@ -32,9 +31,10 @@ function Tuiter () {
               <Route path="/messages" element={<Messages/>}/>
               <Route path="/bookmarks" element={<Bookmarks/>}/>
               <Route path="/lists" element={<Lists/>}/>
-              <Route path="/profile" element={<Profile/>}/>
+              <Route path="/profile/*" element={<Profile/>}/>
               <Route path="/profile/edit" element={<EditProfile/>}/>
               <Route path="/more" element={<More/>}/>
+              <Route path="/" element={<Home/>}/>
             </Routes>
           </div>
           <div className="ttr-right-column">
