@@ -23,7 +23,7 @@ export const Login = () => {
     const login = () =>
         service.login(loginUser)
             .then((user) => {
-                navigate(`/home/${user._id}`)
+                navigate(`/profile/mytuits`)
             });
     useEffect(findAllUsers, []);
     return (
