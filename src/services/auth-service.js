@@ -5,6 +5,9 @@ const AUTH_API = `${BASE_URL}/api/auth`;
 
 const api = axios.create({
     withCredentials: true,
+    method: ["GET", "POST", "PUT", "DELETE"],
+    headers: ['Content-type', 'application/json'],
+    url: BASE_URL
 });
 
 export const signup = (user) =>
