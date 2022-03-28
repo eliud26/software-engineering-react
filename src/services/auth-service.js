@@ -6,7 +6,7 @@ const AUTH_API = `${BASE_URL}/api/auth`;
 const api = axios.create({
     withCredentials: true,
     method: ["GET", "POST", "PUT", "DELETE"],
-    headers: {'Access-Control-Allow-Origin': BASE_URL},
+    headers: {'Access-Control-Allow-Origin': true},
     mode: 'cors'
 });
 
