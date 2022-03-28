@@ -7,7 +7,7 @@ const api = axios.create({
     withCredentials: true,
     method: ["GET", "POST", "PUT", "DELETE"],
     headers: ['Content-type', 'application/json'],
-    origin: BASE_URL
+    url: BASE_URL
 });
 
 export const signup = (user) =>
