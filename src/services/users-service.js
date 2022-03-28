@@ -1,5 +1,5 @@
 import axios from "axios";
-//const BASE_URL = "https://software-node-spring22.herokuapp.com";
+
 const BASE_URL = process.env.REACT_APP_BASE_URL
 
 const api = axios.create({

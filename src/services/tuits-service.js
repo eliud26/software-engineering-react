@@ -1,10 +1,5 @@
 import axios from "axios";
 
-//const TUITS_API = "https://software-node-spring22.herokuapp.com/tuits";
-//const TUITS_API = "http://localhost:4000/tuits";
-//const USERS_API = "https://software-node-spring22.herokuapp.com/users";
-//const USERS_API = "http://localhost:4000/users";
-
 const BASE_URL = process.env.REACT_APP_BASE_URL;
 
 const TUITS_API = `${BASE_URL}/api/tuits`;

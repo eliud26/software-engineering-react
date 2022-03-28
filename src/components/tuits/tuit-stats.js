@@ -23,7 +23,7 @@ const TuitStats = ({tuit, likeTuit, unlikeTuit}) => {
             <div className="col">
                 <span onClick={() => likeTuit(tuit)}>
                   {
-                      tuit.stats.likeByFlag ? <i className="fa-regular fa-thumbs-up" style={{color: 'red'}}/> :
+                      tuit.stats.likeByFlag && user ? <i className="fa-regular fa-thumbs-up" style={{color: 'red'}}/> :
                           <i className="fa-regular fa-thumbs-up"/>
                   }
                   {tuit.stats && tuit.stats.likes}
@@ -32,7 +32,7 @@ const TuitStats = ({tuit, likeTuit, unlikeTuit}) => {
             <div className="col">
                 <span onClick={()=> unlikeTuit(tuit)}>
                     {
-                        tuit.stats.dislikeByFlag ? <i className="fa-regular fa-thumbs-down" style={{color: 'red'}}/> :
+                        tuit.stats.dislikeByFlag && user ? <i className="fa-regular fa-thumbs-down" style={{color: 'red'}}/> :
                             <i className="fa-regular fa-thumbs-down"/>
                     }
                     {tuit.stats && tuit.stats.dislikes}

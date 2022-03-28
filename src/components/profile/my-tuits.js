@@ -4,7 +4,6 @@ import Tuits from "../tuits";
 
 const MyTuits = () => {
     const [tuits, setTuits] = useState([]);
-    console.log(tuits, "HEREEEEE!!!");
     const findMyTuits = () =>
         service.findTuitsByUser("my")
             .then(tuits => setTuits(tuits));
