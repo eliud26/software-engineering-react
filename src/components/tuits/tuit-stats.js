@@ -1,11 +1,10 @@
 import React, {useEffect, useState} from "react";
-import * as serviceL from "../../services/likes-service";
 import * as serviceU from "../../services/auth-service";
 
 
 const TuitStats = ({tuit, likeTuit, unlikeTuit}) => {
     const [user, setUser] = useState({});
-
+    console.log(user);
     useEffect( async ()=> {
         const findUser = await serviceU.profile();
         setUser(findUser);
@@ -22,19 +21,27 @@ const TuitStats = ({tuit, likeTuit, unlikeTuit}) => {
             </div>
             <div className="col">
                 <span onClick={() => likeTuit(tuit)}>
-                  {
-                      tuit.stats.likeByFlag && user ? <i className="fa-regular fa-thumbs-up" style={{color: 'red'}}/> :
-                          <i className="fa-regular fa-thumbs-up"/>
-                  }
+                  {(()=>{
+                      if(user && tuit.stats.likeByFlag) {
+                          return(<i className="fa-regular fa-thumbs-up" style={{color: 'red'}}/>)
+                      }
+                      else {
+                          return(<i className="fa-regular fa-thumbs-up"/>)
+                      }
+                  })()}
                   {tuit.stats && tuit.stats.likes}
                 </span>
             </div>
             <div className="col">
                 <span onClick={()=> unlikeTuit(tuit)}>
-                    {
-                        tuit.stats.dislikeByFlag && user ? <i className="fa-regular fa-thumbs-down" style={{color: 'red'}}/> :
-                            <i className="fa-regular fa-thumbs-down"/>
-                    }
+                    {(()=>{
+                        if(user && tuit.stats.dislikeByFlag) {
+                            return(<i className="fa-regular fa-thumbs-down" style={{color: 'red'}}/>)
+                        }
+                        else {
+                            return(<i className="fa-regular fa-thumbs-down"/>)
+                        }
+                    })()}
                     {tuit.stats && tuit.stats.dislikes}
                 </span>
             </div>
