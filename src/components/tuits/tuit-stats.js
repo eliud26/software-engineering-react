@@ -1,48 +1,40 @@
-import React, {useEffect, useState} from "react";
-import * as serviceU from "../../services/auth-service";
-
+import React from "react";
 
 const TuitStats = ({tuit, likeTuit, unlikeTuit}) => {
-    const [user, setUser] = useState({});
-    console.log(user);
-    useEffect( async ()=> {
-        const findUser = await serviceU.profile();
-        setUser(findUser);
-    }, [])
     return (
         <div className="row mt-2">
             <div className="col">
                 <i className="far fa-message me-1"/>
-                {tuit.stats && tuit.stats.replies}
+                <span className="ttr-stats-replies">{tuit.stats && tuit.stats.replies}</span>
             </div>
             <div className="col">
                 <i className="far fa-retweet me-1"/>
-                {tuit.stats && tuit.stats.retuits}
+                <span className="ttr-stats-retuits">{tuit.stats && tuit.stats.retuits}</span>
             </div>
             <div className="col">
-                <span onClick={() => likeTuit(tuit)}>
+                <span className="ttr-like-tuit-click" onClick={() => likeTuit(tuit)}>
                   {(()=>{
-                      if(user && tuit.stats.likeByFlag) {
+                      if(tuit.stats.likeByFlag) {
                           return(<i className="fa-regular fa-thumbs-up" style={{color: 'red'}}/>)
                       }
                       else {
                           return(<i className="fa-regular fa-thumbs-up"/>)
                       }
                   })()}
-                  {tuit.stats && tuit.stats.likes}
+                  <span className="ttr-stats-likes">{tuit.stats && tuit.stats.likes}</span>
                 </span>
             </div>
             <div className="col">
-                <span onClick={()=> unlikeTuit(tuit)}>
+                <span className="ttr-dislike-tuit-click" onClick={()=> unlikeTuit(tuit)}>
                     {(()=>{
-                        if(user && tuit.stats.dislikeByFlag) {
+                        if(tuit.stats.dislikeByFlag) {
                             return(<i className="fa-regular fa-thumbs-down" style={{color: 'red'}}/>)
                         }
                         else {
                             return(<i className="fa-regular fa-thumbs-down"/>)
                         }
                     })()}
-                    {tuit.stats && tuit.stats.dislikes}
+                    <span className="ttr-stats-dislikes">{tuit.stats && tuit.stats.dislikes}</span>
                 </span>
             </div>
             <div className="col">

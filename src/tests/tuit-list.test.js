@@ -8,10 +8,10 @@ import axios from "axios";
 
 const MOCKED_TUITS_LIST = [
     {
-        _id: "621a8520c170bcf1b841f99e",
-        postedBy: "621a8520c170bcf1b841f99b",
+        _id: "6226cbc70a700a6022e7e9ed",
+        postedBy: "6226cbc60a700a6022e7e9ea",
         tuit: "I love tropical places",
-        postedOn: "2022-02-26T19:52:58.141+00:00"
+        postedOn: "2022-03-08T03:20:23.036+00:00"
     }
 ]
 

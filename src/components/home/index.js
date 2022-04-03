@@ -8,11 +8,11 @@ const Home = () => {
   const {uid} = useParams();
   const [tuits, setTuits] = useState([]);
   const [tuit, setTuit] = useState('');
-  console.log(tuits);
   const userId = uid;
-  const findTuits = () =>
-      service.findAllTuits()
-          .then(tuits => setTuits(tuits));
+  const findTuits = () => {
+    service.findAllTuits()
+        .then(tuits => setTuits(tuits));
+  }
   useEffect(() => {
     let isMounted = true;
     findTuits()

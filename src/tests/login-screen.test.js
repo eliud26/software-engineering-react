@@ -68,6 +68,7 @@ describe('www', () => {
         const mock = jest.spyOn(axios, "get");
         mock.mockImplementation(() =>
             Promise.resolve({ data: {users: MOCKED_USERS} }));
+        // eslint-disable-next-line testing-library/no-unnecessary-act
         act(() => {
              render(<Tuiter/>)
         });

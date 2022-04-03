@@ -14,11 +14,12 @@ export const Login = () => {
         serviceU.deleteUser(uid)
             .then(findAllUsers)
 
-    const findAllUsers = () =>
+    const findAllUsers = () => {
         serviceU.findAllUsers()
             .then(users => {
                 setExistingUsers(users)
             })
+    }
 
     const login = () =>
         service.login(loginUser)
